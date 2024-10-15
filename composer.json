@@ -6,11 +6,18 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-openssl": "*",
+        "firebase/php-jwt": "^6.10",
         "inertiajs/inertia-laravel": "^1.0",
         "laravel/framework": "^11.9",
         "laravel/jetstream": "^5.2",
+        "laravel/prompts": "^0.3.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "saloonphp/laravel-plugin": "^3.5",
+        "saloonphp/pagination-plugin": "^2.2",
+        "spatie/laravel-data": "^4.10",
+        "spatie/laravel-ray": "^1.37",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
