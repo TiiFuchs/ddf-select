@@ -116,6 +116,7 @@ class DdfAnalyzeCommand extends Command
             'name' => $name,
             'duration_in_millis' => $duration,
             'release_date' => $album->release_date,
+            'album_id' => $album->id,
         ]);
 
         $episode->tracks()->sync($tracks->pluck('id'));
