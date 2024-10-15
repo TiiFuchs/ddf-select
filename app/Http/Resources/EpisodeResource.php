@@ -15,6 +15,7 @@ class EpisodeResource extends JsonResource
             'id' => $this->id,
             'number' => $this->number,
             'name' => $this->name,
+            'url' => $this->album->url,
             'duration_in_minutes' => $this->duration_in_minutes,
             'duration_formatted' => $this->durationFormatted(),
             'release_date' => $this->release_date,
