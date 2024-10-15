@@ -25,7 +25,7 @@ class DdfImportCommand extends Command
         $appleMusic = new AppleMusicConnector;
 
         $albums = $appleMusic->paginate(
-            (new GetArtistsAlbums(config('apple_music.ddf_album_id')))
+            (new GetArtistsAlbums(config('apple_music.ddf_artist_id')))
                 ->include('tracks')
         )->setPerPageLimit(100)->items();
 

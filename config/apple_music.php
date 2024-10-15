@@ -2,14 +2,14 @@
 
 return [
 
-    'ddf_album_id' => '201306317',
+    'ddf_artist_id' => env('DDF_ARTIST_ID'),
 
-    'private_key_path' => storage_path('app/private/AuthKey_55FZ8D28SJ.p8'),
+    'private_key_path' => storage_path('app/private/'.env('APPLE_MUSIC_KEY_FILE')),
 
-    'key_id' => '55FZ8D28SJ',
+    'key_id' => env('APPLE_MUSIC_KEY_ID'),
 
-    'team_id' => 'QLYE9ZKRXF',
+    'team_id' => env('APPLE_MUSIC_TEAM_ID'),
 
-    'expires_in' => 600, // 10 minutes
+    'expires_in' => env('DDF_JWT_EXPIRES_IN', 600), // 10 minutes
 
 ];
