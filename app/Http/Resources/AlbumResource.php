@@ -2,28 +2,25 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Episode;
+use App\Models\Album;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin Episode */
-class EpisodeResource extends JsonResource
+/** @mixin Album */
+class AlbumResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
-            'number' => $this->number,
+            'am_id' => $this->am_id,
             'name' => $this->name,
-            'duration_in_millis' => $this->duration_in_millis,
-            'duration_formatted' => $this->durationFormatted(),
+            'track_count' => $this->track_count,
             'release_date' => $this->release_date,
+            'url' => $this->url,
+            'artwork' => $this->artwork,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-
-            'album' => new AlbumResource($this->whenLoaded('album')),
-
-            'tracks' => $this->whenLoaded('tracks', fn () => $this->tracks->pluck('am_id')),
         ];
     }
 }

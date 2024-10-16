@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Episode extends Model
 {
+    public const int DURATION_THRESHOLD_SHORT = 1800000; // 30 minutes
+
+    public const int DURATION_THRESHOLD_LONG = 5400000; // 90 minutes
+
     protected $guarded = [];
 
     protected function casts(): array
@@ -32,6 +36,22 @@ class Episode extends Model
     public function scopeRandom(Builder $query): void
     {
         $query->orderByRaw('RANDOM()');
+    }
+
+    public function scopeDuration(Builder $query, EpisodeDuration|string $episodeLength)
+    {
+        if (is_string($episodeLength)) {
+            $episodeLength = EpisodeDuration::from($episodeLength);
+        }
+
+        match ($episodeLength) {
+            EpisodeDuration::Short => $query->where('duration_in_millis', '<', self::DURATION_THRESHOLD_SHORT),
+
+            EpisodeDuration::Normal => $query->where('duration_in_millis', '>=', self::DURATION_THRESHOLD_SHORT)
+                ->where('duration_in_millis', '<', self::DURATION_THRESHOLD_LONG),
+
+            EpisodeDuration::Long => $query->where('duration_in_millis', '>=', self::DURATION_THRESHOLD_LONG),
+        };
     }
 
     public function durationFormatted(): string

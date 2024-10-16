@@ -2,26 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EpisodeFilterRequest;
 use App\Http\Resources\EpisodeResource;
 use App\Models\Episode;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class EpisodeController extends Controller
 {
-    public function index() {}
-
-    public function random(Request $request)
+    protected function episodes(EpisodeFilterRequest $request)
     {
-        return new EpisodeResource(
-            Episode::with('tracks')->random()->first()
+        return Episode::query()
+            ->when($request->duration, fn (Builder $query, string $duration) => $query->duration($duration))
+            ->when($request->with, fn (Builder $query, array $with) => $query->with($with));
+    }
+
+    public function index(EpisodeFilterRequest $request)
+    {
+        return EpisodeResource::collection(
+            $this->episodes($request)
+                ->simplePaginate(5)
         );
     }
 
-    public function store(Request $request) {}
+    public function random(EpisodeFilterRequest $request)
+    {
+        return new EpisodeResource(
+            $this->episodes($request)
+                ->random()->first()
+        );
+    }
 
-    public function show($id) {}
-
-    public function update(Request $request, $id) {}
-
-    public function destroy($id) {}
+    public function show($id)
+    {
+        return new EpisodeResource(
+            Episode::with(['album', 'tracks'])->find($id),
+        );
+    }
 }
