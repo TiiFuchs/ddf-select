@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class EpisodeController extends Controller
 {
-    protected function episodes(EpisodeFilterRequest $request)
+    protected function applyFilter(EpisodeFilterRequest $request)
     {
         return Episode::query()
             ->when($request->duration, fn (Builder $query, string $duration) => $query->duration($duration))
@@ -19,7 +19,7 @@ class EpisodeController extends Controller
     public function index(EpisodeFilterRequest $request)
     {
         return EpisodeResource::collection(
-            $this->episodes($request)
+            $this->applyFilter($request)
                 ->simplePaginate(5)
         );
     }
@@ -27,7 +27,7 @@ class EpisodeController extends Controller
     public function random(EpisodeFilterRequest $request)
     {
         return new EpisodeResource(
-            $this->episodes($request)
+            $this->applyFilter($request)
                 ->random()->first()
         );
     }
