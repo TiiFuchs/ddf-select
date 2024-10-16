@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\EpisodeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/episodes/random', [EpisodeController::class, 'random'])
         ->name('episodes.random');
     Route::apiResource('/episodes', EpisodeController::class)
-        ->only('index', 'show');
+        ->only(['index', 'show']);
+
+    Route::get('/albums/random', [AlbumController::class, 'random'])
+        ->name('albums.random');
+    Route::apiResource('/albums', AlbumController::class)
+        ->only(['index', 'show']);
 
 });

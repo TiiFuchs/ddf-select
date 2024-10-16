@@ -45,7 +45,7 @@ class DdfImportCommand extends Command
         }
 
         $album = Album::updateOrCreate([
-            'am_id' => $albumData->id,
+            'apple_music_id' => $albumData->id,
         ], [
             'name' => $albumData->name,
             'track_count' => $albumData->trackCount,
@@ -68,7 +68,7 @@ class DdfImportCommand extends Command
     protected function importTrack(Album $album, SongData $trackData): Track
     {
         return $album->tracks()->updateOrCreate([
-            'am_id' => $trackData->id,
+            'apple_music_id' => $trackData->id,
         ], [
             'name' => $trackData->name,
             'disc_number' => $trackData->discNumber,

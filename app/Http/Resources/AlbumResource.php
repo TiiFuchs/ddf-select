@@ -13,14 +13,20 @@ class AlbumResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'am_id' => $this->am_id,
+            'apple_music_id' => $this->apple_music_id,
             'name' => $this->name,
             'track_count' => $this->track_count,
-            'release_date' => $this->release_date,
+            'release_date' => $this->release_date->format('Y-m-d'),
             'url' => $this->url,
             'artwork' => $this->artwork,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+
+            'tracks' => $this->whenLoaded('tracks', fn () => $this->tracks->pluck('apple_music_id')),
+
+            'episodes' => EpisodeResource::collection(
+                $this->whenLoaded('episodes'),
+            ),
         ];
     }
 }

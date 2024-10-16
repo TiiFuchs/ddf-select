@@ -33,11 +33,6 @@ class Episode extends Model
         return $this->belongsToMany(Track::class);
     }
 
-    public function scopeRandom(Builder $query): void
-    {
-        $query->orderByRaw('RANDOM()');
-    }
-
     public function scopeDuration(Builder $query, EpisodeDuration|string $episodeLength)
     {
         if (is_string($episodeLength)) {

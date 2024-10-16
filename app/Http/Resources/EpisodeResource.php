@@ -17,13 +17,13 @@ class EpisodeResource extends JsonResource
             'name' => $this->name,
             'duration_in_millis' => $this->duration_in_millis,
             'duration_formatted' => $this->durationFormatted(),
-            'release_date' => $this->release_date,
+            'release_date' => $this->release_date->format('Y-m-d'),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 
             'album' => new AlbumResource($this->whenLoaded('album')),
 
-            'tracks' => $this->whenLoaded('tracks', fn () => $this->tracks->pluck('am_id')),
+            'tracks' => $this->whenLoaded('tracks', fn () => $this->tracks->pluck('apple_music_id')),
         ];
     }
 }
