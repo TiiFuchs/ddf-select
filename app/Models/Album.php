@@ -7,7 +7,6 @@ use App\Models\Scopes\NotIgnoredScope;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[ScopedBy(NotIgnoredScope::class)]
 class Album extends Model
@@ -27,8 +26,8 @@ class Album extends Model
         return $this->hasMany(Track::class);
     }
 
-    public function episode(): HasOne
+    public function episodes(): HasMany
     {
-        return $this->hasOne(Episode::class);
+        return $this->hasMany(Episode::class);
     }
 }

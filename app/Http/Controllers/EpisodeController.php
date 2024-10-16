@@ -2,40 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EpisodeFilterRequest;
 use App\Http\Resources\EpisodeResource;
 use App\Models\Episode;
-use Illuminate\Database\Eloquent\Builder;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class EpisodeController extends Controller
 {
-    protected function applyFilter(EpisodeFilterRequest $request)
+    protected function applyFilter()
     {
-        return Episode::query()
-            ->when($request->duration, fn (Builder $query, string $duration) => $query->duration($duration))
-            ->when($request->with, fn (Builder $query, array $with) => $query->with($with));
+        return QueryBuilder::for(Episode::class)
+            ->allowedFilters([
+                AllowedFilter::scope('duration'),
+            ])
+            ->allowedIncludes(['album', 'tracks']);
     }
 
-    public function index(EpisodeFilterRequest $request)
+    public function index()
     {
         return EpisodeResource::collection(
-            $this->applyFilter($request)
+            $this->applyFilter()
                 ->simplePaginate(5)
         );
     }
 
-    public function random(EpisodeFilterRequest $request)
+    public function random()
     {
         return new EpisodeResource(
-            $this->applyFilter($request)
-                ->random()->firstOrFail()
+            $this->applyFilter()
+                ->inRandomOrder()->firstOrFail()
         );
     }
 
     public function show($id)
     {
         return new EpisodeResource(
-            Episode::with(['album', 'tracks'])->findOrFail($id),
+            $this->applyFilter()
+                ->whereId($id)
+                ->firstOrFail(),
         );
     }
 }
