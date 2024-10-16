@@ -8,6 +8,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('episodes/random', [\App\Http\Controllers\EpisodeController::class, 'random'])
-    ->name('episode.random');
+    ->name('episodes.random');
 
 //Route::resource('/episodes', \App\Http\Controllers\EpisodeController::class);

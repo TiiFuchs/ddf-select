@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Album;
 use App\Models\Episode;
+use App\Models\Scopes\NotIgnoredScope;
 use App\Models\Track;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
@@ -16,8 +17,10 @@ class DdfAnalyzeCommand extends Command
 
     public function handle(): void
     {
+        $this->removeNewlyIgnoredAlbums();
+
         $albums = Album::with('tracks')
-            ->where('analyzed', '=', false)
+            ->whereAnalyzed(false)
             ->get();
 
         foreach ($albums as $album) {
@@ -124,5 +127,13 @@ class DdfAnalyzeCommand extends Command
         $album->update([
             'analyzed' => true,
         ]);
+    }
+
+    protected function removeNewlyIgnoredAlbums()
+    {
+        $albums = Album::withoutGlobalScope(NotIgnoredScope::class)
+            ->whereIgnore(true)->has('albums')->get();
+
+        $albums->each(fn (Album $album) => $album->episode()->delete());
     }
 }

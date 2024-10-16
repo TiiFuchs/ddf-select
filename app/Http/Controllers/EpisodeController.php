@@ -10,10 +10,10 @@ class EpisodeController extends Controller
 {
     public function index() {}
 
-    public function random()
+    public function random(Request $request)
     {
         return new EpisodeResource(
-            Episode::with(['tracks'])->withCount('tracks')->random()->first()
+            Episode::with('tracks')->random()->first()
         );
     }
 
