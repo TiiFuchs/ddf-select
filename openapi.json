@@ -1,0 +1,384 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "DDF Select",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://ddf-select.tii.one"
+        },
+        {
+            "url": "http://ddf-select.test"
+        }
+    ],
+    "paths": {
+        "/api/albums": {
+            "get": {
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Get Albums",
+                "description": "List all albums.",
+                "operationId": "735609843dcfb89ee4e12e340eddca25",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/albumInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/albums/{id}": {
+            "get": {
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Show Album",
+                "description": "Shows a specific album.",
+                "operationId": "71e9c4179582355e89419e6f6994c418",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The unique identifier of the album",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/albumInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlbumResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/albums/random": {
+            "get": {
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Get Random Album",
+                "description": "Shows a random album.",
+                "operationId": "484c083a1259eb1feae1ef6986c8dc62",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/albumInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlbumResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/episodes": {
+            "get": {
+                "tags": [
+                    "Episodes"
+                ],
+                "summary": "List All Episodes",
+                "description": "List all episodes",
+                "operationId": "39bb119c426c59c593560bf467c00fe9",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/episodeInclude"
+                    },
+                    {
+                        "$ref": "#/components/parameters/episodeDuration"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/episodes/{id}": {
+            "get": {
+                "tags": [
+                    "Episodes"
+                ],
+                "summary": "Get Episode",
+                "description": "Get episode",
+                "operationId": "682c9f0b582614c5d25814ad0a6659c0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The unique identifier of the episode",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/episodeInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EpisodeResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/episodes/random": {
+            "get": {
+                "tags": [
+                    "Episodes"
+                ],
+                "summary": "Get Random Episode,",
+                "description": "Get a random episode,",
+                "operationId": "97b44102b6224e4ad57046652fff5f8e",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/episodeInclude"
+                    },
+                    {
+                        "$ref": "#/components/parameters/episodeDuration"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EpisodeResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ArtworkData": {
+                "required": [
+                    "height",
+                    "width",
+                    "url"
+                ],
+                "properties": {
+                    "bgColor": {
+                        "description": "The average background color of the image.",
+                        "type": "string"
+                    },
+                    "height": {
+                        "description": "The maximum height available for the image",
+                        "type": "integer"
+                    },
+                    "width": {
+                        "description": "The maximum width available for the image.",
+                        "type": "integer"
+                    },
+                    "textColor1": {
+                        "description": "The primary text color used if the background color gets displayed.",
+                        "type": "string"
+                    },
+                    "textColor2": {
+                        "description": "The secondary text color used if the background color gets displayed.",
+                        "type": "string"
+                    },
+                    "textColor3": {
+                        "description": "The tertiary text color used if the background color gets displayed.",
+                        "type": "string"
+                    },
+                    "textColor4": {
+                        "description": "The final post-tertiary text color used if the background color gets displayed.",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "The URL to request the image asset. {w}x{h}must precede image filename, as placeholders for the width and height values as described above. For example, {w}x{h}bb.jpeg).",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "AlbumResource": {
+                "properties": {
+                    "id": {
+                        "description": "The identifier for the album.",
+                        "type": "integer"
+                    },
+                    "apple_music_id": {
+                        "description": "The Apple Music identifier for the album.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "The localized name of the album.",
+                        "type": "string"
+                    },
+                    "track_count": {
+                        "description": "The number of tracks for the album.",
+                        "type": "integer"
+                    },
+                    "release_date": {
+                        "description": "The release date of the album, when known, in YYYY-MM-DD or YYYY format. Prerelease content may have an expected release date in the future.",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "url": {
+                        "description": "The URL for sharing the album in Apple Music.",
+                        "type": "string"
+                    },
+                    "artwork": {
+                        "$ref": "#/components/schemas/ArtworkData"
+                    }
+                },
+                "type": "object"
+            },
+            "EpisodeResource": {
+                "properties": {
+                    "id": {
+                        "description": "The identifier for the episode.",
+                        "type": "integer"
+                    },
+                    "number": {
+                        "description": "Episode number if the episode has one",
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "name": {
+                        "description": "The name of the episode.",
+                        "type": "string"
+                    },
+                    "duration_in_millis": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "duration_formatted": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "release_date": {
+                        "description": "",
+                        "type": "string",
+                        "format": "YYYY-mm-dd",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "parameters": {
+            "albumInclude": {
+                "name": "include",
+                "in": "query",
+                "description": "Include relationships",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "episodes",
+                            "episodes.tracks"
+                        ]
+                    }
+                }
+            },
+            "episodeInclude": {
+                "name": "include",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "album",
+                            "tracks"
+                        ]
+                    }
+                }
+            },
+            "episodeDuration": {
+                "name": "filter[duration]",
+                "in": "query",
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "short",
+                        "normal",
+                        "long"
+                    ]
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "apiKey",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "Albums",
+            "description": "Endpoints related to albums"
+        },
+        {
+            "name": "Episodes",
+            "description": "Endpoints related to episodes"
+        }
+    ]
+}

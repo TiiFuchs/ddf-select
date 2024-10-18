@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AlbumController;
-use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\Api\AlbumController;
+use App\Http\Controllers\Api\EpisodeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

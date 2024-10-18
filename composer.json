@@ -24,6 +24,7 @@
         "spatie/laravel-query-builder": "^6.2",
         "spatie/laravel-ray": "^1.37",
         "tightenco/ziggy": "^2.0",
+        "wotz/laravel-swagger-ui": "^1.0",
         "zircote/swagger-php": "^4.11"
     },
     "require-dev": {
