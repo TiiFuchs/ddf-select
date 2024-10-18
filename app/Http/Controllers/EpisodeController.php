@@ -30,7 +30,7 @@ class EpisodeController extends Controller
     {
         return new EpisodeResource(
             $this->applyFilter()
-                ->inRandomOrder()->first()
+                ->inRandomOrder()->firstOrFail()
         );
     }
 
@@ -39,7 +39,7 @@ class EpisodeController extends Controller
         return new EpisodeResource(
             $this->applyFilter()
                 ->whereId($id)
-                ->first(),
+                ->firstOrFail(),
         );
     }
 }
