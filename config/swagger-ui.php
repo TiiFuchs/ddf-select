@@ -8,7 +8,7 @@ return [
             /*
              * The path where the swagger file is served.
              */
-            'path' => 'api',
+            'path' => 'swagger',
 
             /*
              * The title of the page where the swagger file is served.

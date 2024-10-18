@@ -58,7 +58,7 @@ import {Link} from '@inertiajs/vue3';
                         </Link>
 
                         <a
-                            :href="route('api.index')"
+                            :href="route('swagger.index')"
                             class="rounded-md px-4 py-2 bg-green-600 text-white hover:bg-green-700 transition"
                         >
                             API Explorer
