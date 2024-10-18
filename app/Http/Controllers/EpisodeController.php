@@ -28,14 +28,14 @@ class EpisodeController extends Controller
     {
         return new EpisodeResource(
             $this->applyFilter($request)
-                ->random()->first()
+                ->random()->firstOrFail()
         );
     }
 
     public function show($id)
     {
         return new EpisodeResource(
-            Episode::with(['album', 'tracks'])->find($id),
+            Episode::with(['album', 'tracks'])->findOrFail($id),
         );
     }
 }
