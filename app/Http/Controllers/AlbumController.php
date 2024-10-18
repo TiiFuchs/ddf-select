@@ -13,7 +13,7 @@ class AlbumController extends Controller
     protected function filterQuery()
     {
         return QueryBuilder::for(Album::class)
-            ->allowedIncludes(['tracks', 'episodes']);
+            ->allowedIncludes(['episodes']);
     }
 
     #[OA\Get(

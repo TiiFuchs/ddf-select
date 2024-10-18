@@ -31,8 +31,6 @@ class AlbumResource extends JsonResource
             'url' => $this->url,
             'artwork' => $this->artwork,
 
-            'tracks' => $this->whenLoaded('tracks', fn () => $this->tracks->pluck('apple_music_id')),
-
             'episodes' => EpisodeResource::collection(
                 $this->whenLoaded('episodes'),
             ),
