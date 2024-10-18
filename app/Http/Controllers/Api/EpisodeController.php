@@ -35,7 +35,7 @@ class EpisodeController extends Controller
         ],
         responses: [
             new OA\Response(response: Response::HTTP_OK, description: 'OK'),
-            new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Not Found'),
+            new OA\Response(ref: '#/components/responses/401', response: Response::HTTP_UNAUTHORIZED),
         ]
     )]
     public function index()
@@ -57,7 +57,8 @@ class EpisodeController extends Controller
         ],
         responses: [
             new OA\Response(response: Response::HTTP_OK, description: 'OK', content: new OA\JsonContent(ref: EpisodeResource::class)),
-            new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Not Found'),
+            new OA\Response(ref: '#/components/responses/401', response: Response::HTTP_UNAUTHORIZED),
+            new OA\Response(ref: '#/components/responses/404', response: Response::HTTP_NOT_FOUND),
         ]
     )]
     public function show($id)
@@ -79,7 +80,7 @@ class EpisodeController extends Controller
             new OA\Parameter(ref: '#/components/parameters/episodeDuration'),
         ], responses: [
             new OA\Response(response: Response::HTTP_OK, description: 'OK', content: new OA\JsonContent(ref: EpisodeResource::class)),
-            new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Not Found'),
+            new OA\Response(ref: '#/components/responses/401', response: Response::HTTP_UNAUTHORIZED),
         ]
     )]
     public function random()

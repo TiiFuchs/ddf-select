@@ -28,6 +28,7 @@ class AlbumController extends Controller
             new OA\QueryParameter(ref: '#/components/parameters/albumInclude'),
         ], responses: [
             new OA\Response(response: Response::HTTP_OK, description: 'OK'),
+            new OA\Response(ref: '#/components/responses/401', response: Response::HTTP_UNAUTHORIZED),
         ]
     )]
     public function index()
@@ -48,7 +49,8 @@ class AlbumController extends Controller
             new OA\QueryParameter(ref: '#/components/parameters/albumInclude'),
         ], responses: [
             new OA\Response(response: Response::HTTP_OK, description: 'OK', content: new OA\JsonContent(ref: AlbumResource::class)),
-            new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Not Found'),
+            new OA\Response(ref: '#/components/responses/404', response: Response::HTTP_NOT_FOUND),
+            new OA\Response(ref: '#/components/responses/401', response: Response::HTTP_UNAUTHORIZED),
         ]
     )]
     public function show($id)
@@ -69,7 +71,7 @@ class AlbumController extends Controller
             new OA\QueryParameter(ref: '#/components/parameters/albumInclude'),
         ], responses: [
             new OA\Response(response: Response::HTTP_OK, description: 'OK', content: new OA\JsonContent(ref: AlbumResource::class)),
-            new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Not Found'),
+            new OA\Response(ref: '#/components/responses/401', response: Response::HTTP_UNAUTHORIZED),
         ]
     )]
     public function random()
