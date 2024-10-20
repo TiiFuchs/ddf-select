@@ -3,7 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -64,5 +66,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function playedEpisodes(?Episode $episode = null): BelongsToMany
+    {
+        return $this->belongsToMany(Episode::class, 'played_episodes')
+            ->when($episode, function (Builder $query, Episode $episode) {
+                $query->where('episodes.id', $episode->id);
+            })
+            ->withPivot(['id', 'played_at'])
+            ->orderByPivot('played_at', 'desc')
+            ->using(PlayedEpisode::class);
     }
 }

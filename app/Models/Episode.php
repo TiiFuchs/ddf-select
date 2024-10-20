@@ -33,7 +33,15 @@ class Episode extends Model
         return $this->belongsToMany(Track::class);
     }
 
-    public function scopeDuration(Builder $query, EpisodeDuration|string $episodeLength)
+    public function plays(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'played_episodes')
+            ->withPivot(['id', 'played_at'])
+            ->orderByPivot('played_at', 'desc')
+            ->using(PlayedEpisode::class);
+    }
+
+    public function scopeDuration(Builder $query, EpisodeDuration|string $episodeLength): void
     {
         if (is_string($episodeLength)) {
             $episodeLength = EpisodeDuration::from($episodeLength);
