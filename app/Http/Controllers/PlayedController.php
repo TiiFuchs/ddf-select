@@ -34,6 +34,6 @@ class PlayedController extends Controller
 
         $user->playedEpisodes()->attach($episode->id);
 
-        return new JsonResponse(['message' => 'Created'], 201);
+        return new JsonResponse(['message' => 'Created.'], 201);
     }
 }
