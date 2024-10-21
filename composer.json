@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.3",
         "ext-openssl": "*",
+        "dedoc/scramble": "^0.11.22",
         "firebase/php-jwt": "^6.10",
         "inertiajs/inertia-laravel": "^1.0",
         "laravel/framework": "^11.9",
@@ -24,8 +25,7 @@
         "spatie/laravel-query-builder": "^6.2",
         "spatie/laravel-ray": "^1.37",
         "tightenco/ziggy": "^2.0",
-        "wotz/laravel-swagger-ui": "^1.0",
-        "zircote/swagger-php": "^4.11"
+        "wotz/laravel-swagger-ui": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
