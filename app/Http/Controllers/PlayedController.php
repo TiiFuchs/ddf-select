@@ -20,7 +20,7 @@ class PlayedController extends Controller
         ]);
     }
 
-    public function store($episode, #[CurrentUser] User $user)
+    public function store(Episode $episode, #[CurrentUser] User $user)
     {
         $lastPlayedEpisode = $user->playedEpisodes()->first();
         if ($lastPlayedEpisode) {
@@ -32,7 +32,7 @@ class PlayedController extends Controller
             }
         }
 
-        $user->playedEpisodes()->attach($episode);
+        $user->playedEpisodes()->attach($episode->id);
 
         return new JsonResponse(['message' => 'Created'], 201);
     }
