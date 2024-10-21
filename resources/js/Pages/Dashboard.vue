@@ -58,10 +58,10 @@ import {Link} from '@inertiajs/vue3';
                         </Link>
 
                         <a
-                            :href="route('swagger.index')"
+                            :href="route('scramble.docs.ui')"
                             class="rounded-md px-4 py-2 bg-green-600 text-white hover:bg-green-700 transition"
                         >
-                            API Explorer
+                            API Documentation
                         </a>
                     </div>
                 </div>

@@ -24,12 +24,13 @@ return [
         /*
          * API version.
          */
-        'version' => env('API_VERSION', '0.0.1'),
+        'version' => '1.0.0',
 
         /*
          * Description rendered on the home page of the API documentation (`/docs/api`).
          */
-        'description' => '',
+        'description' => 'API to get random `Die drei ???` episodes from Apple Music. <br><br>'.
+            'With authentication episodes can be marked as played, so they are not included in the random selected episodes for a while.',
     ],
 
     /*
