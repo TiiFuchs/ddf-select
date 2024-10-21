@@ -129,7 +129,7 @@ class EpisodeController extends Controller
         } while (! $episode && $duration > 0);
 
         if (! $episode) {
-            throw new NotFoundHttpException('Record not found');
+            throw new NotFoundHttpException('Record not found.');
         }
 
         return (new EpisodeResource($episode))
