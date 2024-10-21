@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18321926368404dbb28bcee601e283a9",
+    "content-hash": "0d57b3fe0e88caaf4b1f8339fb691108",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1216,6 +1216,121 @@
                 }
             ],
             "time": "2024-10-19T06:06:22+00:00"
+        },
+        {
+            "name": "dedoc/scramble-pro",
+            "version": "v0.6.12",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:dedoc/scramble-pro.git",
+                "reference": "c460cef3716c609781052641312b665aa9eb3891"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.dedoc.co/dist/dedoc/scramble-pro/dedoc-scramble-pro-c460cef3716c609781052641312b665aa9eb3891-zip-085684.zip",
+                "reference": "c460cef3716c609781052641312b665aa9eb3891",
+                "shasum": "24e0a57dcdc831aa7e892abf5a1b216ec0e582ea"
+            },
+            "require": {
+                "dedoc/scramble": "^0.11.21",
+                "illuminate/contracts": "^10.0||^11.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.14",
+                "nunomaduro/collision": "^8.1.1||^7.10.0",
+                "orchestra/testbench": "^9.0.0||^8.22.0",
+                "pestphp/pest": "^2.34",
+                "pestphp/pest-plugin-arch": "^2.7",
+                "pestphp/pest-plugin-laravel": "^2.3",
+                "spatie/laravel-data": ">=4.0",
+                "spatie/laravel-query-builder": ">=5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dedoc\\ScramblePro\\ScrambleProServiceProvider"
+                    ],
+                    "aliases": {
+                        "ScramblePro": "Dedoc\\ScramblePro\\Facades\\ScramblePro"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dedoc\\ScramblePro\\": "src/",
+                    "Dedoc\\ScramblePro\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Dedoc\\ScramblePro\\Tests\\": "tests/",
+                    "Workbench\\App\\": "workbench/app/"
+                }
+            },
+            "scripts": {
+                "post-autoload-dump": [
+                    "@composer run prepare"
+                ],
+                "clear": [
+                    "@php vendor/bin/testbench package:purge-scramble-pro --ansi"
+                ],
+                "prepare": [
+                    "@php vendor/bin/testbench package:discover --ansi"
+                ],
+                "build": [
+                    "@composer run prepare",
+                    "@php vendor/bin/testbench workbench:build --ansi"
+                ],
+                "start": [
+                    "Composer\\Config::disableProcessTimeout",
+                    "@composer run build",
+                    "@php vendor/bin/testbench serve"
+                ],
+                "analyse": [
+                    "vendor/bin/phpstan analyse"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest --coverage"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Lytvynenko",
+                    "email": "roman@dedoc.co",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Scramble PRO",
+            "homepage": "https://github.com/dedoc/scramble-pro",
+            "keywords": [
+                "de:doc",
+                "laravel",
+                "scramble",
+                "scramble-pro"
+            ],
+            "support": {
+                "source": "https://github.com/dedoc/scramble-pro/tree/v0.6.12",
+                "issues": "https://github.com/dedoc/scramble-pro/issues"
+            },
+            "funding": [
+                {
+                    "type": "github",
+                    "url": "https://github.com/de:doc"
+                }
+            ],
+            "time": "2024-10-21T14:37:54+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -9230,75 +9345,6 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
-        },
-        {
-            "name": "wotz/laravel-swagger-ui",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wotzebra/laravel-swagger-ui.git",
-                "reference": "bd5e4eaadb0d2dac17becf56c0b7f88cd5982f57"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wotzebra/laravel-swagger-ui/zipball/bd5e4eaadb0d2dac17becf56c0b7f88cd5982f57",
-                "reference": "bd5e4eaadb0d2dac17becf56c0b7f88cd5982f57",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "laravel/framework": "^9.0|^10.0|^11.0",
-                "php": "^8.1|^8.2|^8.3"
-            },
-            "require-dev": {
-                "adamwojs/php-cs-fixer-phpdoc-force-fqcn": "^2.0",
-                "friendsofphp/php-cs-fixer": "^3.0",
-                "guzzlehttp/guzzle": "^7.5",
-                "jasonmccreary/laravel-test-assertions": "^2.3",
-                "orchestra/testbench": "^7.0|^8.0|^9.0",
-                "phpunit/phpunit": "^9.5|^10.0",
-                "squizlabs/php_codesniffer": "^3.6"
-            },
-            "suggest": {
-                "ext-yaml": "*"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Wotz\\SwaggerUi\\SwaggerUiServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Wotz\\SwaggerUi\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Günther Debrauwer",
-                    "email": "gunther.debrauwer@whoownsthezebra.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Add Swagger UI to a Laravel application.",
-            "homepage": "https://github.com/wotzebra/laravel-swagger-ui",
-            "keywords": [
-                "laravel",
-                "openapi",
-                "swagger",
-                "swagger-ui"
-            ],
-            "support": {
-                "issues": "https://github.com/wotzebra/laravel-swagger-ui/issues",
-                "source": "https://github.com/wotzebra/laravel-swagger-ui/tree/1.0.0"
-            },
-            "time": "2024-09-26T11:40:39+00:00"
         },
         {
             "name": "zbateson/mail-mime-parser",

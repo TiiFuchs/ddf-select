@@ -1,0 +1,37 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "phpdoc_separation": {
+            "groups": [
+                [
+                    "deprecated",
+                    "link",
+                    "see",
+                    "since"
+                ],
+                [
+                    "author",
+                    "copyright",
+                    "license"
+                ],
+                [
+                    "category",
+                    "package",
+                    "subpackage"
+                ],
+                [
+                    "property",
+                    "property-read",
+                    "property-write"
+                ],
+                [
+                    "param",
+                    "return"
+                ],
+                [
+                    "*"
+                ]
+            ]
+        }
+    }
+}

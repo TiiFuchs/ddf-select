@@ -60,6 +60,6 @@ class Episode extends Model
     public function durationFormatted(): string
     {
         return CarbonInterval::milliseconds($this->duration_in_millis)->cascade()
-            ->forHumans(short: true);
+            ->forHumans(short: true, parts: 2);
     }
 }
