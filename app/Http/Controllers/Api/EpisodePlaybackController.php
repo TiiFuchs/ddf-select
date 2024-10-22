@@ -30,7 +30,7 @@ class EpisodePlaybackController extends Controller
              * "2024-10-20T09:36:51.000000Z"
              * ]
              */
-            'data' => $played->pluck('pivot.played_at'),
+            'data' => $played->pluck('pivot.played_at')->map->toIso8601String(),
         ]);
     }
 

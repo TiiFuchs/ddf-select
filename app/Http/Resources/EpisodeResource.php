@@ -30,7 +30,7 @@ class EpisodeResource extends JsonResource
              * @format date
              * @example 2010-10-01
              */
-            'release_date' => $this->release_date?->format('Y-m-d') ?? null,
+            'release_date' => $this->release_date?->format('Y-m-d'),
 
             /** @var bool */
             'album_exists' => $this->when(isset($this->album_exists), $this->album_exists),

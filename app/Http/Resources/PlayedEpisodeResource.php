@@ -15,9 +15,9 @@ class PlayedEpisodeResource extends JsonResource
             /**
              * @var string
              * @format date-time
-             * @example 2024-10-22T06:32:43.000000Z
+             * @example 2024-10-22T06:32:43Z
              */
-            'played_at' => $this->pivot->played_at,
+            'played_at' => $this->pivot->played_at->toIso8601String(),
             'episode' => new EpisodeResource(
                 $this
             ),
