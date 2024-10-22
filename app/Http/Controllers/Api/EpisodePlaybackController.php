@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Episode;
 use App\Models\PlayedEpisode;
 use App\Models\User;
@@ -9,12 +10,12 @@ use Carbon\Carbon;
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Http\JsonResponse;
 
-class PlayedController extends Controller
+class EpisodePlaybackController extends Controller
 {
     /**
      * List Episode Playbacks
      *
-     * @param  User  $user
+     * @param User $user
      * @return JsonResponse
      */
     public function index(Episode $episode, #[CurrentUser] User $user)
@@ -39,7 +40,7 @@ class PlayedController extends Controller
      * Marks the episode as played at the current datetime. <br><br>
      * If an episode was already marked as played in the last 5 minutes, the older play-state gets discarded.
      *
-     * @param  User  $user
+     * @param User $user
      * @return JsonResponse
      */
     public function store(Episode $episode, #[CurrentUser] User $user)

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Api\AlbumController;
 use App\Http\Controllers\Api\EpisodeController;
-use App\Http\Controllers\PlayedController;
+use App\Http\Controllers\Api\EpisodePlaybackController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +22,10 @@ Route::apiResource('episodes', EpisodeController::class)
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::apiResource('episodes.played', PlayedController::class)
+    Route::apiResource('episodes.played', EpisodePlaybackController::class)
         ->only(['index', 'store']);
+
+    Route::apiResource('user/played', \App\Http\Controllers\Api\PlayedEpisodesController::class)
+        ->only(['index', 'destroy']);
 
 });

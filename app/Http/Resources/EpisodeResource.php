@@ -34,11 +34,13 @@ class EpisodeResource extends JsonResource
 
             /** @var bool */
             'album_exists' => $this->when(isset($this->album_exists), $this->album_exists),
+            /** @example 1 */
             'album_count' => $this->whenCounted('album'),
             'album' => new AlbumResource($this->whenLoaded('album')),
 
             /** @var bool */
             'tracks_exists' => $this->when(isset($this->tracks_exists), $this->tracks_exists),
+            /** @example 38 */
             'tracks_count' => $this->whenCounted('tracks'),
             /**
              * List of Apple Music IDs for the tracks featured in this episode.

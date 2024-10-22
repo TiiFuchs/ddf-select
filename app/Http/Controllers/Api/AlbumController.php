@@ -24,6 +24,7 @@ class AlbumController extends Controller
             QueryBuilder::for(Album::class)
                 ->allowedIncludes(['episodes', 'episodes.tracks'])
                 ->simplePaginate(5)
+                ->appends(request()->query())
         );
     }
 

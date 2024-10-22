@@ -32,8 +32,10 @@ class AlbumResource extends JsonResource
             /** @var ArtworkData */
             'artwork' => $this->artwork,
 
+            /** @example 1 */
             'episodes_count' => $this->whenCounted('episodes'),
-            /** @var bool */
+            /** @var bool
+             */
             'episodes_exists' => $this->when(isset($this->episodes_exists), $this->episodes_exists),
 
             'episodes' => EpisodeResource::collection(
