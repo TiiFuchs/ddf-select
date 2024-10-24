@@ -10,8 +10,8 @@ class PlayedEpisodeResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            /** @example 30 */
-            'id' => $this->pivot->id,
+            /** @example bvzvA8 */
+            'id' => $this->pivot->sqid,
             /**
              * @var string
              * @format date-time

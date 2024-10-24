@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use RedExplosion\Sqids\Concerns\HasSqids;
 
 class Episode extends Model
 {
+    use HasSqids;
+
     public const int DURATION_THRESHOLD_SHORT = 1800000; // 30 minutes
 
     public const int DURATION_THRESHOLD_LONG = 5400000; // 90 minutes

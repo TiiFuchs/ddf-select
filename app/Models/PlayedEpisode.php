@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use RedExplosion\Sqids\Concerns\HasSqids;
 
 class PlayedEpisode extends Pivot
 {
+    use HasSqids;
+
     public $incrementing = true;
 
     public $timestamps = false;

@@ -13,8 +13,8 @@ class AlbumResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            /** @example 195 */
-            'id' => $this->id,
+            /** @example orhqiY */
+            'id' => $this->sqid,
             /** @example 1148996010 */
             'apple_music_id' => $this->apple_music_id,
             /** @example Folge 141: und die Fußball-Falle */

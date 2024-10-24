@@ -50,7 +50,7 @@ class EpisodeController extends Controller
     {
         $record = QueryBuilder::for(Episode::class)
             ->allowedIncludes(['album', 'tracks'])
-            ->where('id', $id)
+            ->whereSqid($id)
             ->first();
 
         abort_if($record === null, 404, 'Episode not found');

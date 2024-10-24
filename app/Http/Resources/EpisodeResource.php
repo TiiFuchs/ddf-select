@@ -12,8 +12,8 @@ class EpisodeResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            /** @example 188 */
-            'id' => $this->id,
+            /** @example qidxYK */
+            'id' => $this->sqid,
             /**
              * @var int|null
              * @example 141

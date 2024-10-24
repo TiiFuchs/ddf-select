@@ -37,7 +37,7 @@ class AlbumController extends Controller
     {
         $resource = QueryBuilder::for(Album::class)
             ->allowedIncludes(['episodes', 'episodes.tracks'])
-            ->where('id', $id)
+            ->whereSqid($id)
             ->first();
 
         abort_if($resource === null, 404);
