@@ -132,7 +132,7 @@ class DdfAnalyzeCommand extends Command
     protected function removeNewlyIgnoredAlbums()
     {
         $albums = Album::withoutGlobalScope(NotIgnoredScope::class)
-            ->whereIgnore(true)->has('albums')->get();
+            ->whereIgnore(true)->has('episodes')->get();
 
         $albums->each(fn (Album $album) => $album->episode()->delete());
     }
