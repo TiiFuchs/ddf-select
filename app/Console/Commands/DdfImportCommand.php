@@ -7,6 +7,7 @@ use App\Data\AppleMusic\SongData;
 use App\Http\Integrations\AppleMusic\AppleMusicConnector;
 use App\Http\Integrations\AppleMusic\Requests\GetArtistsAlbums;
 use App\Models\Album;
+use App\Models\Scopes\NotIgnoredScope;
 use App\Models\Track;
 use Illuminate\Console\Command;
 
@@ -44,15 +45,16 @@ class DdfImportCommand extends Command
             return null;
         }
 
-        $album = Album::updateOrCreate([
-            'apple_music_id' => $albumData->id,
-        ], [
-            'name' => $albumData->name,
-            'track_count' => $albumData->trackCount,
-            'release_date' => $albumData->releaseDate,
-            'url' => $albumData->url,
-            'artwork' => $albumData->artwork,
-        ]);
+        $album = Album::withoutGlobalScope(NotIgnoredScope::class)
+            ->updateOrCreate([
+                'apple_music_id' => (string) $albumData->id,
+            ], [
+                'name' => $albumData->name,
+                'track_count' => $albumData->trackCount,
+                'release_date' => $albumData->releaseDate,
+                'url' => $albumData->url,
+                'artwork' => $albumData->artwork,
+            ]);
 
         if ($album->wasRecentlyCreated) {
             $this->newlyCreatedAlbums++;
