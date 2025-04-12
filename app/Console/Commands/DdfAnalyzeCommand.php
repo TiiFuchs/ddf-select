@@ -134,6 +134,6 @@ class DdfAnalyzeCommand extends Command
         $albums = Album::withoutGlobalScope(NotIgnoredScope::class)
             ->whereIgnore(true)->has('episodes')->get();
 
-        $albums->each(fn (Album $album) => $album->episode()->delete());
+        $albums->each(fn (Album $album) => $album->episodes()->delete());
     }
 }
