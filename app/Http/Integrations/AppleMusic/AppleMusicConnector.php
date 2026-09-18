@@ -4,6 +4,8 @@ namespace App\Http\Integrations\AppleMusic;
 
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Cache;
+use Saloon\Exceptions\Request\FatalRequestException;
+use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\Connector;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
@@ -15,6 +17,12 @@ use Saloon\Traits\Plugins\AcceptsJson;
 class AppleMusicConnector extends Connector implements HasPagination
 {
     use AcceptsJson;
+
+    public ?int $tries = 4;
+
+    public ?int $retryInterval = 1000;
+
+    public ?bool $useExponentialBackoff = true;
 
     /**
      * The Base URL of the API
@@ -58,6 +66,15 @@ class AppleMusicConnector extends Connector implements HasPagination
     protected function defaultConfig(): array
     {
         return [];
+    }
+
+    public function handleRetry(FatalRequestException|RequestException $exception, Request $request): bool
+    {
+        if ($exception instanceof RequestException) {
+            return $exception->getResponse()->status() === 504;
+        }
+
+        return false;
     }
 
     public function paginate(Request $request): Paginator
