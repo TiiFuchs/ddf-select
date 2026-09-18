@@ -10,18 +10,17 @@
     "require": {
         "php": "^8.3",
         "ext-openssl": "*",
-        "dedoc/scramble": "^0.11.22",
-        "dedoc/scramble-pro": "^0.6.12",
-        "firebase/php-jwt": "^6.10",
-        "inertiajs/inertia-laravel": "^1.0",
-        "laravel/framework": "^11.9",
+        "dedoc/scramble": "^0.13.43",
+        "firebase/php-jwt": "^7.1.1",
+        "inertiajs/inertia-laravel": "^3.3",
+        "laravel/framework": "^12.69",
         "laravel/jetstream": "^5.2",
         "laravel/pail": "^1.1",
         "laravel/prompts": "^0.3.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "red-explosion/laravel-sqids": "^1.2",
-        "saloonphp/laravel-plugin": "^3.5",
+        "saloonphp/laravel-plugin": "^4.3",
         "saloonphp/pagination-plugin": "^2.2",
         "spatie/laravel-data": "^4.10",
         "spatie/laravel-query-builder": "^6.2",
@@ -34,8 +33,8 @@
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
-        "pestphp/pest": "^3.3",
-        "pestphp/pest-plugin-laravel": "^3.0"
+        "pestphp/pest": "^3.8.2",
+        "pestphp/pest-plugin-laravel": "^3.2"
     },
     "autoload": {
         "psr-4": {
@@ -81,11 +80,5 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://satis.dedoc.co"
-        }
-    ]
+    "prefer-stable": true
 }

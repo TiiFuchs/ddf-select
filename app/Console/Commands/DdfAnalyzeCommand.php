@@ -34,7 +34,7 @@ class DdfAnalyzeCommand extends Command
 
         /** @var Collection<Track> $tracks */
         $tracks = $album->tracks
-            ->filter(fn (Track $track) => ! str($track->name)->contains(['(Inhaltsangabe)', '(Outro)']))
+            ->filter(fn (Track $track) => ! str($track->name)->contains(['Inhaltsangabe', 'Outro']))
             ->sortBy(['disc_number', 'track_number']);
 
         $subEpisodes = $this->splitTracks($tracks);
